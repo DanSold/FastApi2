@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>{{ title }}</title>
+{% endblock %}
+
+{% block content %}
+<style>
+    .dish-container {
+        margin-left: 20px;
+    }
+</style>
+
+{% for dish in menu %}
+<br>
+<div class="dish-container" style="margin-top: 15px;">
+    <p class="h2">{{ dish.name }}</p>
+    <img src="{{ dish.picture }}" alt="" width="200" height="200">
+    <p class="h4">{{ dish.price }}</p>
+
+<div class="container" style="margin-top: 25px; margin-right: 340px;">
+    <button type="button" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#{{ dish.name }}">Look recipe</button>
+    <div id="{{ dish.name }}" class="collapse">
+        <p class="h4">{{ dish.recipe }}</p>
+    </div>
+</div>
+
+    {% if user.moderator or user.id == dish.author %}
+    <form action="/web/menu/delete_dish/{{ dish.id }}/">
+    <input type="submit" value="Delete dish" style="margin-top: 15px;" class="btn btn-danger" />
+</form>
+    <form action="/web/menu/edit_dish/{{ dish.id }}/">
+    <input type="submit" value="Edit dish" style="margin-top: 15px;" class="btn btn-success" />
+</form>
+    {% endif %}
+</div>
+<hr>
+{% endfor %}
+{% endblock %}

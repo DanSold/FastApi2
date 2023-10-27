@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
+            integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
+            crossorigin="anonymous"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    {% block title %}
+    {% endblock %}
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <div class="navbar-brand">Recipes</div>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/web/menu">Menu</a>
+                </li>
+                {% if user %}
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/web/create">Create dish</a>
+                </li>
+                {% endif %}
+                {% if user %}
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/web/user_dishes">My dishes</a>
+                </li>
+                {% endif %}
+                {% if user %}
+                 <li class="nav-item">
+                    <a class="nav-link" href="/web/logout">Exit, {{ user[2] if user[2] else user.name }}</a>
+                </li>
+                {% else %}
+               <li class="nav-item">
+                    <a class="nav-link" href="/web/user">Authorization</a>
+                </li>
+                {% endif %}
+
+
+
+            </ul>
+            <form class="d-flex" role="search" method="post" action="/web/search">
+                <input class="form-control me-2" type="search" name="dish_name" placeholder="enter your dish ..."
+                       aria-label="Search" required minlength="3">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+{% block content %}
+{% endblock %}
+
+</body>
+</html>
