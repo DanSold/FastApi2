@@ -12,7 +12,7 @@ router = APIRouter(
     include_in_schema=False
 )
 
-templates = Jinja2Templates(directory='app/templates')
+templates = Jinja2Templates(directory='app\\templates')
 
 
 @router.post('/search')
