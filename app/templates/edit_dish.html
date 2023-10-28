@@ -22,11 +22,11 @@
     <form action="/web/menu/edit_dish/{{dish.id}}/update_dish" method="post">
     <div class="mb-3">
         <label for="name" class="form-label">Dish name</label>
-        <input type="text" name="name" value="{{ dish.name }}" class="form-control" id="name" style="width: 100%;">
+        <input type="text" name="name" value="{{ dish.name }}" class="form-control" id="name" style="width: 100%;" maxlength="500" minlength="3">
     </div>
     <div class="mb-3">
         <label for="recipe" class="form-label">Dish recipe</label>
-        <input type="text" name="recipe" value="{{ dish.recipe }}" class="form-control" id="recipe" style="width: 100%;">
+        <input type="text" name="recipe" value="{{ dish.recipe }}" class="form-control" id="recipe" style="width: 100%;" maxlength="20000" minlength="100">
     </div>
     <div class="mb-3">
         <label for="picture" class="form-label">Dish picture</label>
